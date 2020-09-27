@@ -1,0 +1,15 @@
+https://github.com/aiogram/aiogram/archive/dev-3.x.zip
+typing_extensions
+python-dotenv
+aiohttp[speedups]
+pydantic
+numpy
+aiocache
+umongo
+motor
+ujson
+pillow
+emoji
+fastapi
+uvicorn
+jinja2
