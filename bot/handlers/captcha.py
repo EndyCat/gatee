@@ -42,7 +42,13 @@ class CaptchaAnswerHandler(AdvancedCallbackQueryHandler):
             await RestrictChatMember(
                 chat_id=challenge.chat_id,
                 user_id=challenge.user_id,
-                permissions=ChatPermissions(can_send_messages=True),
+                permissions=ChatPermissions(
+                    can_send_messages=True,
+                    can_send_media_messages=True,
+                    can_send_polls=True,
+                    can_send_other_messages=True,
+                    can_add_web_page_previews=True,
+                ),
             )
         else:
             await KickChatMember(chat_id=challenge.chat_id, user_id=challenge.user_id)

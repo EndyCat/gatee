@@ -28,7 +28,13 @@ async def submit(recaptcha_response: RecaptchaResultModel, request: Request):
             await bot.restrict_chat_member(
                 challenge.chat_id,
                 challenge.user_id,
-                ChatPermissions(can_send_messages=True),
+                ChatPermissions(
+                    can_send_messages=True,
+                    can_send_media_messages=True,
+                    can_send_polls=True,
+                    can_send_other_messages=True,
+                    can_add_web_page_previews=True,
+                ),
             )
             await challenge.delete()
             await bot.delete_message(challenge.chat_id, challenge.message_id)
