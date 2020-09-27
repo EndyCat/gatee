@@ -15,7 +15,7 @@
   <a href="https://github.com/crinny/gatee">
     <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%EF%B8%8F-red">
   </a>
-  <a href="https://github.com/psf/black">
+  <a href="https://github.com/crinny/gatee/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
   </a>
 </p>

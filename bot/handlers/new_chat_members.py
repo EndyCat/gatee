@@ -4,6 +4,7 @@ from ..database.models import Chat, ChatSettings
 from ..filters import bot_is_group_admin, new_chat_members
 from ..punishment_determiner import determine_punishment
 from ..punishment_executor import PunishmentExecutor
+from ..utils.telegram import is_group_admin
 
 router = Router()
 
@@ -12,7 +13,11 @@ router = Router()
 async def new_chat_members_(message: types.Message):
     chat = await Chat.get_chat(message.chat.id)
 
-    if chat is None or not await bot_is_group_admin(message):
+    if (
+        chat is None
+        or not await bot_is_group_admin(message)
+        or is_group_admin(message.chat.id, message.from_user.id)
+    ):
         return
 
     new_chat_members_filtered = filter(lambda m: not m.is_bot, message.new_chat_members)
