@@ -12,6 +12,7 @@ router = Router()
 @router.message(new_chat_members)
 async def new_chat_members_(message: types.Message):
     chat = await Chat.get_chat(message.chat.id)
+    settings: ChatSettings = chat.settings
 
     if (
         chat is None
@@ -23,7 +24,6 @@ async def new_chat_members_(message: types.Message):
     new_chat_members_filtered = filter(lambda m: not m.is_bot, message.new_chat_members)
 
     for user in new_chat_members_filtered:
-        settings: ChatSettings = chat.settings
         punishment = await determine_punishment(user, settings)
         if punishment is None:
             continue
