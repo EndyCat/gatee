@@ -17,7 +17,7 @@ async def new_chat_members_(message: types.Message):
     if (
         chat is None
         or not await bot_is_group_admin(message)
-        or is_group_admin(message.chat.id, message.from_user.id)
+        or await is_group_admin(message.chat.id, message.from_user.id)
     ):
         return
 
