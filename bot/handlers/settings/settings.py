@@ -54,10 +54,12 @@ async def make_settings_menu_keyboard(
     )
 
     keyboard = make_violation_selection_keyboard(punishments)
-    keyboard.inline_keyboard[-1].append(
-        InlineKeyboardButton(
-            text="📅 Creation date settings", callback_data="CreationDateSettings"
-        )
+    keyboard.inline_keyboard.append(
+        [
+            InlineKeyboardButton(
+                text="📅 Creation date settings", callback_data="CreationDateSettings"
+            )
+        ]
     )
 
     return keyboard

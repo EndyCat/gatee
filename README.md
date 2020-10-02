@@ -23,7 +23,8 @@
 <p align="center">
   <a href="https://github.com/crinny/gatee/wiki">Gatee Wiki</a> •
   <a href="https://github.com/crinny/gatee/wiki/Installation">Installation</a> •
-  <a href="https://github.com/crinny/gatee#credits">Credits</a>
+  <a href="https://github.com/crinny/gatee#credits">Credits</a> •
+  <a href="https://github.com/crinny/gatee/blob/master/CHANGELOG.md">Changelog</a>
 </p>
 
 Gatee is a Telegram bot that carefully analyzes every user that joins your chat to determine whether they could be a spammer or a malicious bot. Gatee offers high customizability, while offering no inconvinience to legit users.
@@ -37,6 +38,7 @@ Gatee is a Telegram bot that carefully analyzes every user that joins your chat 
 ### Factors Gatee takes in account
 - [Combot Anti Spam](https://cas.chat)
 - [SpamWatch](https://spamwat.ch)
+- [Intellivoid SpamProtection](https://docs.intellivoid.net/spamprotection/introduction)
 - Account creation date
 - Account information
 

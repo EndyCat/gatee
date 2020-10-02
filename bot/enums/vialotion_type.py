@@ -18,3 +18,4 @@ class ViolationType(enum.Enum):
     InappropriateAccountCreationDate = "inappropriate_account_creation_date"
     URLInName = "url_in_name"
     RTLCharactersInName = "rtl_characters_in_name"
+    IntellivoidBan = "intellivoid_banned"

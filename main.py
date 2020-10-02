@@ -19,7 +19,6 @@ def main():
     @app.on_event("startup")
     async def on_startup():
         bot = Bot(token=os.getenv("API_TOKEN"), parse_mode="Markdown")
-        Bot.set_current(bot)
         dp = Dispatcher()
 
         loop = asyncio.get_event_loop()

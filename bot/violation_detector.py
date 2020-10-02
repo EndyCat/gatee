@@ -8,8 +8,9 @@ from aiogram.api.types import User
 
 from .database.models import ChatSettings
 from .enums import ViolationType
-from .external import CAS, CreationDate, SpamWatch
+from .external import CAS, CreationDate, Intellivoid, SpamWatch
 from .external.cas.types import User as CASUser
+from .external.intellivoid.types import User as IntellivoidUser
 from .external.spamwatch.types import Ban
 from .regex import rtl_re, url_re
 
@@ -42,6 +43,22 @@ class CasBanDetector(ViolationDetector):
         async with CAS() as cas:
             cas_check = await cas.check(user.id)
             return cas_check
+
+
+class IntellivoidBanDetector(ViolationDetector):
+    async def is_detected(self, user: User, settings: ChatSettings) -> bool:
+        check = await self._find_intellivoid_ban(user)
+
+        if check is not None and check.attributes is not None:
+            return (
+                check.attributes.is_blacklisted or check.attributes.is_potential_spammer
+            )
+
+    @staticmethod
+    async def _find_intellivoid_ban(user: User) -> Optional[IntellivoidUser]:
+        async with Intellivoid() as intellivoid:
+            intellivoid_check = await intellivoid.check(user.id)
+            return intellivoid_check
 
 
 class InappropriateAccountCreationDateDetector(ViolationDetector):
@@ -77,6 +94,7 @@ def make_violation_detector(violation_type: ViolationType) -> ViolationDetector:
         ViolationType.InappropriateAccountCreationDate: InappropriateAccountCreationDateDetector,
         ViolationType.URLInName: URLInNameDetector,
         ViolationType.RTLCharactersInName: RTLCharactersInNameDetector,
+        ViolationType.IntellivoidBan: IntellivoidBanDetector,
     }
     try:
         return mapping[violation_type]()

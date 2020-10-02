@@ -15,6 +15,7 @@ def sort_punishments_by_weight(
         ViolationType.SpamWatchBan,
         ViolationType.RTLCharactersInName,
         ViolationType.CasBanned,
+        ViolationType.IntellivoidBan,
     ]:
         punishment: Optional[int] = chat_settings[violation_type.value].type
         if punishment is not None or not ignore_none_punishments:

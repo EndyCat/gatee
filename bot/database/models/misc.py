@@ -19,6 +19,7 @@ class Punishment(umongo.EmbeddedDocument):
 class ChatSettings(umongo.EmbeddedDocument):
     cas_banned = fields.EmbeddedField(Punishment)
     spamwatch_banned = fields.EmbeddedField(Punishment)
+    intellivoid_banned = fields.EmbeddedField(Punishment)
     account_creation_date_less_than_months = fields.IntegerField()
     inappropriate_account_creation_date = fields.EmbeddedField(Punishment)
     rtl_characters_in_name = fields.EmbeddedField(Punishment)

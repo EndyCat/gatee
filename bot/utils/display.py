@@ -22,6 +22,7 @@ violations_display_name = {
     "SpamWatchBan": "SpamWatch ⛔️",
     "CasBanned": "CAS ⛔️",
     "RTLCharactersInName": "RTL 🈴",
+    "IntellivoidBan": "Intellivoid ⛔️",
 }
 
 settings_description_display_name = {
@@ -30,6 +31,7 @@ settings_description_display_name = {
     "InappropriateAccountCreationDate": "user's account creation date is too recent",
     "URLInName": "the user has URL in name",
     "RTLCharactersInName": "the user has RTL characters in name (including all RTL languages)",
+    "IntellivoidBan": "the user is banned by Intellivoid spam protection",
 }
 
 settings_changed_value_display_name = {
@@ -38,6 +40,7 @@ settings_changed_value_display_name = {
     "InappropriateAccountCreationDate": "who's account creation date is too recent",
     "URLInName": "that have URL in name",
     "RTLCharactersInName": "that have RTL characters in name (including all RTL languages)",
+    "IntellivoidBan": "that are banned by Intellivoid spam protection",
 }
 
 punishment_set_display_text = {

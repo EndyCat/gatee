@@ -13,3 +13,4 @@ emoji
 fastapi
 uvicorn
 jinja2
+pymongo-migrate
