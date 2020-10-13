@@ -20,7 +20,8 @@ class ReCaptchaSender(BaseCaptchaSender):
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="Solve captcha", url=f"{host}/recaptcha/{challenge.uuid}",
+                    text="Solve captcha",
+                    url=f"{host}/recaptcha/{challenge.uuid}",
                 ),
             ],
         ]

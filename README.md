@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/crinny/gatee"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/no-entry_26d4.png" alt="Gatee"></a>
+  <a href="."><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/no-entry_26d4.png" alt="Gatee"></a>
   <br>
   Gatee
   <br>
@@ -12,10 +12,10 @@
   <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg">
   </a>
-  <a href="https://github.com/crinny/gatee">
+  <a href=".">
     <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%EF%B8%8F-red">
   </a>
-  <a href="https://github.com/crinny/gatee/blob/master/LICENSE">
+  <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
   </a>
 </p>
@@ -23,8 +23,8 @@
 <p align="center">
   <a href="https://github.com/crinny/gatee/wiki">Gatee Wiki</a> •
   <a href="https://github.com/crinny/gatee/wiki/Installation">Installation</a> •
-  <a href="https://github.com/crinny/gatee#credits">Credits</a> •
-  <a href="https://github.com/crinny/gatee/blob/master/CHANGELOG.md">Changelog</a>
+  <a href="#credits">Credits</a> •
+  <a href="CHANGELOG.md">Changelog</a>
 </p>
 
 Gatee is a Telegram bot that carefully analyzes every user that joins your chat to determine whether they could be a spammer or a malicious bot. Gatee offers high customizability, while offering no inconvinience to legit users.

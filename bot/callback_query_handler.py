@@ -25,7 +25,6 @@ class AdvancedCallbackQueryHandler(CallbackQueryHandler, ABC):
         if self.chat is None:
             return
 
-        self.chat = self.chat
         self.settings = self.chat.settings
 
         self.query_raw = self.event.data

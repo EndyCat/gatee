@@ -10,6 +10,8 @@ from ..utils.display import (
 )
 from ..utils.misc import chunks, dict_chunks
 
+go_back = "🔙 Go back"
+
 
 def make_violation_selection_keyboard(
     punishments: List[Punishment],
@@ -30,7 +32,7 @@ def make_violation_selection_keyboard(
 
 
 def make_punishment_selection_keyboard(violation_type: str) -> InlineKeyboardMarkup:
-    menu = {**punishments_selection_menu_display_name, "🔙 Go back": "main"}
+    menu = {**punishments_selection_menu_display_name, go_back: "main"}
 
     buttons = [
         [
@@ -56,16 +58,15 @@ def make_mute_time_selection_keyboard(violation_type: str) -> InlineKeyboardMark
     buttons = [
         [
             InlineKeyboardButton(
-                text=text, callback_data=f"{violation_type}_mute_{minutes}",
+                text=text,
+                callback_data=f"{violation_type}_mute_{minutes}",
             )
             for text, minutes in chunk.items()
         ]
         for chunk in dict_chunks(time, 3)
     ]
 
-    buttons[-1].append(
-        InlineKeyboardButton(text="🔙 Go back", callback_data=violation_type)
-    )
+    buttons[-1].append(InlineKeyboardButton(text=go_back, callback_data=violation_type))
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
     return keyboard
@@ -76,13 +77,16 @@ def make_creation_date_selection_keyboard() -> InlineKeyboardMarkup:
 
     buttons = [
         [
-            InlineKeyboardButton(text=text, callback_data=f"creationdate_{month}",)
+            InlineKeyboardButton(
+                text=text,
+                callback_data=f"creationdate_{month}",
+            )
             for text, month in chunk.items()
         ]
         for chunk in dict_chunks(months, 2)
     ]
 
-    buttons[-1].append(InlineKeyboardButton(text="🔙 Go back", callback_data="main"))
+    buttons[-1].append(InlineKeyboardButton(text=go_back, callback_data="main"))
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
     return keyboard
@@ -102,7 +106,7 @@ def make_captcha_type_selection_keyboard(violation_type: str) -> InlineKeyboardM
             InlineKeyboardButton(
                 text="ReCaptcha", callback_data=f"{violation_type}_captcha_recaptcha"
             ),
-            InlineKeyboardButton(text="🔙 Go back", callback_data=violation_type),
+            InlineKeyboardButton(text=go_back, callback_data=violation_type),
         ],
     ]
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
