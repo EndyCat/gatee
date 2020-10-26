@@ -4,13 +4,14 @@ from dataclasses import dataclass
 from io import BytesIO
 from typing import Any, List, Tuple
 
-import emoji
+from emoji import UNICODE_EMOJI
 from aiocache import cached
 from aiogram.api.methods import SendPhoto
 from aiogram.api.types import (
     BufferedInputFile,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
+    Message
 )
 from aiohttp import ClientSession
 from PIL import Image, ImageDraw, UnidentifiedImageError
@@ -43,10 +44,11 @@ class EmojiCaptchaSender(BaseCaptchaSender):
         (242, 230, 224),
     ]
 
-    emojis = list(emoji.UNICODE_EMOJI)
+    emojis = list(UNICODE_EMOJI)
     short_emojis = list(filter(lambda e: len(e) <= 2, emojis))
 
-    async def send(self, challenge):
+    async def send(self, challenge) -> Message:
+        print(challenge, type(challenge))
         emoji_challenge = await self.make_emoji_image()
 
         challenge.correct_emoji_answer = emoji_challenge.emoji_sequence.correct_emoji
@@ -124,7 +126,7 @@ class EmojiCaptchaSender(BaseCaptchaSender):
     @staticmethod
     def _make_gradient_image(
         size: Tuple[int, int], f_co: Tuple[int, int, int], t_co: Tuple[int, int, int]
-    ):
+    ) -> Image:
         image = Image.new("RGBA", size)
         draw = ImageDraw.Draw(image)
 

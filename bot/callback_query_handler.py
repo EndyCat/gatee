@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Type, Callable
 
 from aiogram.api.types import CallbackQuery
 from aiogram.dispatcher.handler import CallbackQueryHandler
-from pydantic.error_wrappers import ValidationError
+from pydantic import BaseModel, ValidationError
 
 from .database.models import Chat, ChatSettings
 
@@ -12,15 +12,15 @@ class AdvancedCallbackQueryHandler(CallbackQueryHandler, ABC):
     chat: Chat
     settings: ChatSettings
     query_raw: str
-    query = None
+    query: BaseModel
 
-    query_model = None
+    query_model: Type[BaseModel] = None
 
     @abstractmethod
-    async def post_handle(self):
+    async def post_handle(self) -> None:
         raise NotImplementedError
 
-    async def handle(self):
+    async def handle(self) -> None:
         self.chat = await Chat.get_chat(self.event.message.chat.id)
         if self.chat is None:
             return
@@ -38,7 +38,7 @@ class AdvancedCallbackQueryHandler(CallbackQueryHandler, ABC):
         await self.post_handle()
 
 
-def list_to_model(data: List[str], model):
+def list_to_model(data: List[str], model: Type[BaseModel]) -> BaseModel:
     if len(model.__fields__) != len(data):
         raise ValueError(f"Excepted {len(model.__fields__)} values, got {len(data)}")
 
@@ -46,7 +46,7 @@ def list_to_model(data: List[str], model):
     return model(**values)
 
 
-def matches_model(model):
+def matches_model(model: Type[BaseModel]) -> Callable:
     def check(query: CallbackQuery) -> bool:
         try:
             list_to_model(query.data.split("_"), model)

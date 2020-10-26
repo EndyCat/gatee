@@ -34,14 +34,14 @@ class PunishmentExecutor:
                 f"No punishment executor found for punishment {self.punishment!r}."
             )
 
-    async def _ban(self):
+    async def _ban(self) -> None:
         await KickChatMember(chat_id=self.db_chat.chat_id, user_id=self.user.id)
 
-    async def _kick(self):
+    async def _kick(self) -> None:
         await KickChatMember(chat_id=self.db_chat.chat_id, user_id=self.user.id)
         await UnbanChatMember(chat_id=self.db_chat.chat_id, user_id=self.user.id)
 
-    async def _mute(self):
+    async def _mute(self) -> None:
         until_date = timedelta(
             seconds=self.db_chat.settings[self.punishment.db_name].mute_for
         )
@@ -53,7 +53,7 @@ class PunishmentExecutor:
             until_date=until_date,
         )
 
-    async def _captcha(self):
+    async def _captcha(self) -> None:
         await RestrictChatMember(
             chat_id=self.db_chat.chat_id,
             user_id=self.user.id,

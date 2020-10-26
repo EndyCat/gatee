@@ -1,14 +1,14 @@
 import random
 
 from aiogram.api.methods import SendMessage
-from aiogram.api.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.api.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from ..utils.telegram import mention
 from . import BaseCaptchaSender
 
 
 class SimpleCaptchaSender(BaseCaptchaSender):
-    async def send(self, challenge):
+    async def send(self, challenge) -> Message:
         return await SendMessage(
             chat_id=self.chat.id,
             text=f"🤖 {mention(self.user)}, please confirm you are *not a robot*!",
@@ -17,7 +17,7 @@ class SimpleCaptchaSender(BaseCaptchaSender):
         )
 
     @staticmethod
-    def _make_keyboard(challenge):
+    def _make_keyboard(challenge) -> InlineKeyboardMarkup:
         buttons = [
             [
                 InlineKeyboardButton(

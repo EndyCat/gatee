@@ -10,7 +10,6 @@ from .database.models import ChatSettings
 from .enums import ViolationType
 from .external import CAS, CreationDate, Intellivoid, SpamWatch
 from .external.cas.types import User as CASUser
-from .external.intellivoid.types import User as IntellivoidUser
 from .external.spamwatch.types import Ban
 from .regex import rtl_re, url_re
 
@@ -47,18 +46,14 @@ class CasBanDetector(ViolationDetector):
 
 class IntellivoidBanDetector(ViolationDetector):
     async def is_detected(self, user: User, settings: ChatSettings) -> bool:
-        check = await self._find_intellivoid_ban(user)
-
-        if check is not None and check.attributes is not None:
-            return (
-                check.attributes.is_blacklisted or check.attributes.is_potential_spammer
-            )
+        return await self._check_intellivoid_ban(user)
 
     @staticmethod
-    async def _find_intellivoid_ban(user: User) -> Optional[IntellivoidUser]:
+    async def _check_intellivoid_ban(user: User) -> bool:
         async with Intellivoid() as intellivoid:
             intellivoid_check = await intellivoid.check(user.id)
-            return intellivoid_check
+
+        return intellivoid_check is not None and intellivoid_check.attributes is not None
 
 
 class InappropriateAccountCreationDateDetector(ViolationDetector):

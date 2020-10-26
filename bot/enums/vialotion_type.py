@@ -8,7 +8,7 @@ class Punishment:
     name: str
     db_name: str = ""
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.db_name = ViolationType[self.name].value
 
 

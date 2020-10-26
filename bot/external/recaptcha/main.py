@@ -13,8 +13,8 @@ class ReCaptcha(BaseAPI):
         self.secret = secret
         self.client = ClientSession()
 
-    async def verify(self, response: str, remoteip: Optional[str] = None):
-        data = {"secret": self.secret, "response": response}
+    async def verify(self, g_recaptcha_response: str, remoteip: Optional[str] = None) -> ReCaptchaResponse:
+        data = {"secret": self.secret, "response": g_recaptcha_response}
         if remoteip is not None:
             data["remoteip"] = remoteip
 

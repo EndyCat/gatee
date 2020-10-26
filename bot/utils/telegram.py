@@ -20,7 +20,7 @@ async def is_group_admin(chat_id: Union[int, str], user_id: int) -> bool:
 
 def mention(user: User) -> str:
     if user.username:
-        return f"@{user.username}"
+        return f"@{user.username}".replace("_", r"\_")  # Escape Markdown character
 
     full_name = user.first_name
     if user.last_name:

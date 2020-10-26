@@ -1,14 +1,14 @@
 import os
 
 from aiogram.api.methods import SendMessage
-from aiogram.api.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.api.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from ..utils.telegram import mention
 from . import BaseCaptchaSender
 
 
 class ReCaptchaSender(BaseCaptchaSender):
-    async def send(self, challenge):
+    async def send(self, challenge) -> Message:
         scheme = os.getenv("WEB_SERVER_SCHEME")
         port = os.getenv("WEB_SERVER_PORT")
         alias = os.getenv("WEB_SERVER_ALIAS")

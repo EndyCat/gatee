@@ -2,7 +2,7 @@ from ..enums import Captchas
 from . import EmojiCaptchaSender, ReCaptchaSender, SimpleCaptchaSender
 
 
-def make_captcha_sender(captcha_type: int):
+def make_captcha_sender(captcha_type: int) -> SimpleCaptchaSender:
     mapping = {
         Captchas.SIMPLE: SimpleCaptchaSender,
         Captchas.EMOJI: EmojiCaptchaSender,
