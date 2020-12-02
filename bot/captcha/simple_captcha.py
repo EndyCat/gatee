@@ -30,6 +30,6 @@ class SimpleCaptchaSender(BaseCaptchaSender):
                 ),
             ],
         ]
-        random.shuffle(buttons)
+        random.shuffle(buttons[0])
 
         return InlineKeyboardMarkup(inline_keyboard=buttons)
